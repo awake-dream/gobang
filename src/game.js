@@ -127,10 +127,13 @@ function countInDirection(row, col, player, dRow, dCol) {
 
   while (
     r >= 0 && r < BOARD_SIZE &&
-    c >= 0 && c < BOARD_SIZE &&
-    state.board.has(getBoardKey(r, c)) &&
-    state.board.get(getBoardKey(r, c)).player === player
+    c >= 0 && c < BOARD_SIZE
   ) {
+    const key = getBoardKey(r, c);
+    const piece = state.board.get(key);
+    if (!piece || piece.player !== player) {
+      break;
+    }
     count++;
     r += dRow;
     c += dCol;
@@ -159,4 +162,12 @@ export function resetGame() {
  */
 export function getState() {
   return { ...state, board: new Map(state.board) };
+}
+
+/**
+ * Gets the current player
+ * @returns {Player}
+ */
+export function getCurrentPlayer() {
+  return state.currentPlayer;
 }
