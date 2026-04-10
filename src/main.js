@@ -1,5 +1,5 @@
 import { createBoard, pixelToBoard, drawPiece } from './board.js';
-import { placePiece, resetGame, getState, getCurrentPlayer, addStateListener } from './game.js';
+import { placePiece, resetGame, getState, addStateListener } from './game.js';
 
 /** @type {HTMLCanvasElement | null} */
 const canvas = /** @type {HTMLCanvasElement | null} */ (document.getElementById('board'));
@@ -39,9 +39,8 @@ function handleClick(event) {
   if (!pos) return;
 
   const result = placePiece(pos.row, pos.col);
-  if (result.success) {
-    const player = getCurrentPlayer();
-    drawPiece(ctx, pos.row, pos.col, player);
+  if (result.success && result.player) {
+    drawPiece(ctx, pos.row, pos.col, result.player);
   }
 }
 

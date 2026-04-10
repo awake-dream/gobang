@@ -54,7 +54,7 @@ function notifyListeners() {
  * Places a piece at the given position
  * @param {number} row
  * @param {number} col
- * @returns {{success: boolean, reason?: string}}
+ * @returns {{success: boolean, player?: Player, reason?: string}}
  */
 export function placePiece(row, col) {
   if (state.status !== 'playing') {
@@ -66,13 +66,14 @@ export function placePiece(row, col) {
     return { success: false, reason: 'Position already occupied' };
   }
 
-  const piece = { row, col, player: state.currentPlayer };
+  const currentPlayer = state.currentPlayer;
+  const piece = { row, col, player: currentPlayer };
   state.board.set(key, piece);
   state.moveCount++;
 
-  if (checkWin(row, col, state.currentPlayer)) {
+  if (checkWin(row, col, currentPlayer)) {
     state.status = 'won';
-    state.winner = state.currentPlayer;
+    state.winner = currentPlayer;
   } else if (state.moveCount >= BOARD_SIZE * BOARD_SIZE) {
     state.status = 'draw';
   } else {
@@ -80,7 +81,7 @@ export function placePiece(row, col) {
   }
 
   notifyListeners();
-  return { success: true };
+  return { success: true, player: currentPlayer };
 }
 
 /**
