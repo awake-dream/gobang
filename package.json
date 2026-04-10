@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "dev": "npx http-server . -p 8080 -c-1",
     "build": "echo 'No build required for vanilla JS'"
   },
   "devDependencies": {

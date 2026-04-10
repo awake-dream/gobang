@@ -39,12 +39,8 @@ function handleClick(event) {
   if (!pos) return;
 
   const result = placePiece(pos.row, pos.col);
-  if (result.success) {
-    const state = getState();
-    const piece = state.board.get(`${pos.row},${pos.col}`);
-    if (piece) {
-      drawPiece(ctx, pos.row, pos.col, piece.player);
-    }
+  if (result.success && result.player) {
+    drawPiece(ctx, pos.row, pos.col, result.player);
   }
 }
 
