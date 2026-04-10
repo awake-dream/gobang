@@ -1,0 +1,13 @@
+{
+  "name": "gobang",
+  "version": "1.0.0",
+  "description": "A simple Gomoku (Five in a Row) game",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "echo 'No build required for vanilla JS'"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

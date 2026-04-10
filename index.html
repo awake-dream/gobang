@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>五子棋</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <h1>五子棋</h1>
+
+  <div class="game-container">
+    <div id="status" class="status">白方回合</div>
+
+    <canvas id="board"></canvas>
+
+    <div class="controls">
+      <button id="restart">重新开始</button>
+    </div>
+
+    <p class="info">点击棋盘落子，五子连珠获胜</p>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
